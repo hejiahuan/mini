@@ -21,3 +21,16 @@ page{
 }
 ####2配置了tabbar和顶端样式
 tabbar基本上靠配置，在app.json中
+
+###3注意这里定义自定义组件的时候，引用的时候不能用wx-xxx来命名
+可能是保留字把
+####3如果自定义组件中要有多插槽必须
+options: {
+    multipleSlots: true // 在组件定义时的选项中启用多slot支持
+  }
+  https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html
+
+####做了顶部搜索界面
+我们界面跳转有2种方式
+1navigator
+2wx.navigateTo(代码的方式)
