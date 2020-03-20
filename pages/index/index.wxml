@@ -1,3 +1,21 @@
 <view>
   <my-search></my-search>
+
+  <!-- 轮播图 
+    1swiper默认的宽高
+    100%*150px
+    2swiper-item中的图片
+    320px *240px
+    -->
+   
+  <swiper  indicator-dots indicator-color="rgba(0,0,0,.3)" autoplay circular>
+     <swiper-item class="index-swiper" item-id="" wx:for="{{swiperList}}" wx:key="goods_ids">
+        <navigator>
+          <!-- https://developers.weixin.qq.com/miniprogram/dev/component/image.html -->
+          <image mode="widthFix" src="{{item.image_src}}"/>
+        </navigator>
+     </swiper-item>
+  </swiper>
+
+
 </view>

@@ -1,3 +1,9 @@
 view{
     /* color: var(--themColor); */
 }
+swiper{
+    height: 340rpx;
+}
+.index-swiper image{
+    width: 100%;
+}

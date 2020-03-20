@@ -34,3 +34,14 @@ options: {
 我们界面跳转有2种方式
 1navigator
 2wx.navigateTo(代码的方式)
+
+###轮播图
+引入了network.js自己封装的
+一定不要忘了this.setData({
+    xxx:xxxx
+    不是xxx=xxxx
+})
+
+image 的mode属性
+<image mode="widthFix" src="{{item.image_src}}"/>
+  <!-- https://developers.weixin.qq.com/miniprogram/dev/component/image.html -->
