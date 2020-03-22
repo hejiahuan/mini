@@ -1,18 +1,36 @@
-// pages/category/index.js
+
+import {getCategoryList } from "../../network/category"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    //左侧的菜单数据
+    leftMenuList:[],
+    //右侧的商品数据
+    rightContent:[],
+    //分类的总数据
+    categoryList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    getCategoryList().then(res=>{
+     this.categoryList=res.data.message;
+     //构造左侧的大菜单数据这里用了js的map遍历数组
+     let leftMenuList=this.categoryList.map(v=>v.cat_name);
+     //构造右侧的商品数据
+     let rightContent=this.categoryList[0].children;
+     this.setData({
+      leftMenuList,
+      rightContent
+     })
 
+    })
   },
 
   /**
