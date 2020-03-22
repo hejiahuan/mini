@@ -45,3 +45,6 @@ options: {
 image 的mode属性
 <image mode="widthFix" src="{{item.image_src}}"/>
   <!-- https://developers.weixin.qq.com/miniprogram/dev/component/image.html -->
+
+  ####做了分类导航
+  
