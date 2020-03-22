@@ -47,4 +47,8 @@ image 的mode属性
   <!-- https://developers.weixin.qq.com/miniprogram/dev/component/image.html -->
 
   ####做了分类导航
-  
+  1主要做了分类导航的css 布局
+  这里我们要主要的是我们布局一定要写成rpx
+  比如图片100px 那就写成100rpx
+
+  width的100%是继承他包裹的元素！！！

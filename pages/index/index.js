@@ -1,10 +1,11 @@
-import { getSwiperList,getCatNavList} from "../../network/index"
+import { getSwiperList,getCatNavList,getFloorList} from "../../network/index"
 
 //Page Object
 Page({
   data: {
     swiperList: [],
-    categoryNavList:[]
+    categoryNavList:[],
+    floorList:[]
   },
   //options(Object)
   //页面加载的时候
@@ -21,6 +22,12 @@ Page({
        })
        
      })
+
+     getFloorList().then(res=>{
+       this.setData({
+         floorList:res.data.message
+       })
+     })     
 
   },
   onReady: function () {

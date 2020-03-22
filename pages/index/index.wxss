@@ -20,3 +20,29 @@ swiper{
 .cate-nav image{
     width: 100%;
 }
+
+.product-list{
+    height: 386rpx;
+}
+.product-list navigator{
+    float: left;
+    width: 33.33%;
+}
+
+/* 后4个超链接的图片是第一个图片的高度就行了 */
+/* 第一个原图的像素
+
+232px / 386px=33.33vw/height(未知)
+我现在图片的像素
+100vw/3=33.33vw
+33.33vw
+
+232px/386px=33.33vw/height(未知)
+height:(33.33vw*386/232)/2 */
+.product-list navigator:nth-last-child(-n+4){
+    height: 52%;
+}
+
+.product-list navigator image:nth-last-child(-n+4){
+    height: 100%;
+}

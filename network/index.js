@@ -16,3 +16,11 @@ import request from "../utils/network";
  export function getCatNavList(){
      return request({url:"/home/catitems"})
  }
+
+
+ /**
+  * 获取楼层数据
+  */
+ export function getFloorList(){
+    return request({url:"/home/floordata"})
+ }

@@ -25,5 +25,24 @@
 </navigator>
 </view>
 
+<!---楼层-->
+<view class="index-floor" wx:for="{{floorList}}" 
+                          wx:for-item="itme1"
+                          wx:for-index="index1"
+                          wx:key="floor_title">
+      <view class="floor-title">
+          <image src="{{itme1.floor_title.image_src}}" mode="widthFix"/>
+      </view>
+      <!-- 内容 -->
+      <view class="product-list">
+         <navigator
+          wx:for="{{itme1.product_list}}"
+          wx:for-item="item2"
+          wx:for-index="index2"
+          wx:key="name">
+           <image mode="{{index2===0?'widthFix':'scaleToFill'}}" src="{{item2.image_src}}"></image>
+         </navigator>
+      </view>
+</view>
 
 </view>
