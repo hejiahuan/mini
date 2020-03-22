@@ -7,3 +7,16 @@ swiper{
 .index-swiper image{
     width: 100%;
 }
+
+
+.cate-nav{
+  display: flex;
+}
+
+.cate-nav navigator{
+    padding: 20rpx;
+    flex:1
+}
+.cate-nav image{
+    width: 100%;
+}

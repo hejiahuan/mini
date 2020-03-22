@@ -1,7 +1,11 @@
+
+const API_BASE_URL = 'https://api-hmugo-web.itheima.net/api/public/v1'
+
 export default function request(options){
+  const _url=API_BASE_URL+options.url;
   return new Promise((resolve,reject)=>{
     wx.request({
-      url: options.url,
+      url:_url,
       method:options.method||"get",
       data:options.data||{},
       success:function(res){
@@ -15,3 +19,16 @@ export default function request(options){
     })
   })
 }
+
+// // 再一个简洁版本
+// export default function request(options){
+//   return new Promise((resolve,reject)=>{
+//     wx.request({
+//       url: options.url,
+//       method:options.method||"get",
+//       data:options.data||{},
+//       success:resolve,
+//       fail:reject
+//     })
+//   })
+// }

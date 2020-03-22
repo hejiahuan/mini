@@ -17,5 +17,13 @@
      </swiper-item>
   </swiper>
 
+<view class="cate-nav" hover-class="none" hover-stop-propagation="false">
+  <!-- 下面是分类导航 -->
+<navigator wx:for="{{categoryNavList}}" wx:key="name" >
+    <image mode="widthFix" src="{{item.image_src}}"/>
+      
+</navigator>
+</view>
+
 
 </view>
