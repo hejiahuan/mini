@@ -1,2 +1,9 @@
-<!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<view>
+    <my-search></my-search>
+    <!-- 监听自定义事件 -->
+    <my-tabcontrol tabcontrol="{{tabControl}}" bind:tabItemChange="tabItemChange">
+        <block wx:if="{{tabControl[0].isActive}}">1</block>
+        <block wx:elif="{{tabControl[1].isActive}}">2</block>
+        <block wx:elif="{{tabControl[2].isActive}}">3</block>
+    </my-tabcontrol>
+</view>

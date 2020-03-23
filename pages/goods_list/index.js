@@ -5,14 +5,47 @@ Page({
    * 页面的初始数据
    */
   data: {
+    tabControl:[
+      {
+        id:0,
+        value:"综合",
+        isActive:true
+      },
+      {
+        id:1,
+        value:"销量",
+        isActive:false
+      },
+      {
+        id:2,
+        value:"价格",
+        isActive:false
+      }
+    ]
 
   },
 
+  // tab切换点击
+  tabItemChange(e){
+    // 1获取被点击的标题索引
+    const {index}=e.detail;
+    // //2修改数据源组
+    const tabs=this.data.tabControl;
+    tabs.forEach((v,i)=>i===index?v.isActive=true:v.isActive=false);
+      // tabs.forEach((i,v)=>{
+      //   console.log(v)
+      // })
+   
+    // //3
+    this.setData({
+      tabControl:tabs
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
   },
 
   /**

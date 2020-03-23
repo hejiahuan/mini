@@ -77,3 +77,7 @@ width:100%
 scroll-view scroll-top
 必须 要给scroll-top搞一个变量，单单写0是不对的
  <scroll-view scroll-y class="right-content" scroll-top="{{scrollTop}}" >
+
+ ####点击分类进入tabControl
+ 1思路他是给TabControll中加入一个slot来做切换
+ 就是点击tab上的栏目，slot切换到固定位置
