@@ -12,7 +12,9 @@ Page({
     //右侧的商品数据
     rightContent:[],
     //分类的总数据
-    categoryList:[]
+    categoryList:[],
+    //当前页码
+    currentIndex:0
   },
 
   /**
@@ -32,6 +34,8 @@ Page({
 
     })
   },
+
+ 
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -80,5 +84,18 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  // 左侧点击事件
+  bindClick(e){
+    let currentIndex=e.currentTarget.dataset.index;
+    //构造右侧的商品数据
+    let rightContent=this.categoryList[currentIndex].children;
+    
+    this.setData({
+    currentIndex,
+     rightContent
+    })
+    
+  },
+
 })

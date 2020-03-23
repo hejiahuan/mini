@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "my-search":"/components/wx-search/wx-search"
+  },
+  "navigationBarTitleText": "分类导航"
 }

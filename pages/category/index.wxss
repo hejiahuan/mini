@@ -1,1 +1,56 @@
-/* pages/category/index.wxss */
+page{
+    height: 100%;
+}
+
+.cates{
+    height: 100%;
+}
+
+.cates-container{
+    display: flex;
+    height: calc(100vh - 90rpx);
+}
+
+.left-menu{
+    flex:2;
+    width: 30%;
+}
+
+.right-content{
+    flex:5;
+    width: 70%;
+}
+
+.good-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.good-content navigator{
+    width: 33.33%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.good-titles{
+  color: #333;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.left-menu-item{
+    height: 80rpx;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 30rpx;
+}
+
+.active{
+    color:var(--themColor)
+}
