@@ -69,3 +69,11 @@ width:100%
       1先判断是否本地是否有旧数据
       2没有旧数据发送请求
       3有旧数据同时没有过期用旧数据
+
+加了缓存主要是靠wx.setStorageSync主要业务在index.js
+
+
+####在给分类点击的时候默认是置顶的
+scroll-view scroll-top
+必须 要给scroll-top搞一个变量，单单写0是不对的
+ <scroll-view scroll-y class="right-content" scroll-top="{{scrollTop}}" >

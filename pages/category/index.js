@@ -16,7 +16,9 @@ Page({
     //当前页码
     currentIndex: 0,
     //缓存用的
-    Cates: []
+    Cates: [],
+    //点击左栏目触发右栏目默认置顶
+    scrollTop:0
   },
 
   /**
@@ -150,9 +152,12 @@ Page({
 
     this.setData({
       currentIndex,
-      rightContent
+      rightContent,
+       //重新设置右侧内容scroll-veiw标签距离顶部的距离
+      scrollTop:0
     })
 
+   
   },
 
 })

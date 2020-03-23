@@ -15,7 +15,7 @@
            </view>
        </scroll-view>
        <!-- //右边默认菜单 -->
-        <scroll-view scroll-y class="right-content" >
+        <scroll-view scroll-y class="right-content" scroll-top="{{scrollTop}}" >
            <view class="goods-group"
                 wx:for="{{rightContent}}"
                 wx:for-item="item1"
