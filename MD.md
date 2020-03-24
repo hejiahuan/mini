@@ -100,3 +100,37 @@ scroll-view scroll-top
     flex-direction: column;
     justify-content: space-around;
 }
+
+###上拉加载（在Page中）
+https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html
+onReachBottom
+
+1找到滚动条触底事件
+2判断还有没有下一页数据
+   获取总页数
+   当前页
+3没有下一页弹出提示
+4有下一页，加载
+这里对数组的拼接没有用push,直接用这个很神奇（数组的拼接）
+goodList:[...this.data.goodList,...goodList]
+跟Array的可变参数很像
+let totalNums=[]
+
+const nums1=[1,2,3,4]
+const nums2=[33,44,666]
+
+一种方法是遍历，然后添加到totalNums中
+for(let n of nums1){
+  totalNums.push(n)
+}
+
+
+第二种最可用的方法
+有个...语法！！！！！
+totalNums.push(...nums1)
+语义...nums把nums的依次解析出来，然后再加入totalNums中
+
+
+Arrays.push(...items: T[])可变参数
+所以他可以放多个参数进去！！！！，然后,分隔！
+totalName.push(1,2,3,4)

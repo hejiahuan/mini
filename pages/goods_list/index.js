@@ -27,11 +27,13 @@ Page({
     QueryParams:{
       query:"",
       cid:"",
-      pageNum:1,
-      pageSize:10
+      pagenum:1,
+      pagesize:20,
     },
 
-    goodList:[]
+    goodList:[],
+    //总页数
+    totalPage:1
 
 
   },
@@ -57,11 +59,14 @@ Page({
    */
   onLoad: function (options) {
     // // 可以得到上个页面的cid
-    this.data.QueryParams=options.cid;
+    this.data.QueryParams.cid=options.cid;
     // //获取商品列表数据
     getGoodsList(this.data.QueryParams).then(res=>{
+      const total=res.data.message.total;
+      this.data.totalPage=Math.ceil(total/this.data.QueryParams.pagesize);
       const goodList=res.data.message.goods;
      this.setData({
+       //这么写是为了做数组拼接，上拉加载！！！
       goodList
      })
     })
@@ -105,8 +110,25 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
+  onReachBottom: function (item) {
+    const pageNum=this.data.QueryParams.pagenum;
+    const totalPage=this.data.QueryParams.totalPage;
+  //  1判断有没有下一页
+    if(pageNum>=totalPage){
+        console.log("没有下一页数据");
+    }else{
+      this.data.QueryParams.pagenum++;
+      getGoodsList(this.data.QueryParams).then(res=>{
+        const total=res.data.message.total;
+        this.data.totalPage=Math.ceil(total/this.data.QueryParams.pagesize);
+        const resgoodList=res.data.message.goods;
+       
+       this.setData({
+        goodList:[...this.data.goodList,...resgoodList]
+        
+       })
+      })
+    }
   },
 
   /**
