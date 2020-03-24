@@ -81,3 +81,22 @@ scroll-view scroll-top
  ####点击分类进入tabControl
  1思路他是给TabControll中加入一个slot来做切换
  就是点击tab上的栏目，slot切换到固定位置
+
+ ####做了goodList没有做下拉加载(都在goodList中)
+ 这里加了没有图片的话，加载默认图片！！！
+ 文字溢出，4个缺一不可
+ .goods_name{
+    display: -webkit-box;    
+    -webkit-box-orient: vertical; 
+    /* -webkit-line-clamp表示几行1就是1行，2就是2行    */
+    -webkit-line-clamp: 2;    
+    overflow: hidden;
+}
+
+改变flex 默认X轴对齐--->Y
+.goods_info{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

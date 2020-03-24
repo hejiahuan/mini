@@ -1,1 +1,32 @@
-/* pages/goods_list/index.wxss */
+.goods_item{
+    display: flex;
+    /* bb */
+    border-bottom: 1rpx solid #ccc;
+}
+.goods_image{
+   flex: 2;
+}
+.goods_image image{
+    width: 70%;
+}
+
+.goods_info{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.goods_name{
+    display: -webkit-box;    
+    -webkit-box-orient: vertical; 
+    /* -webkit-line-clamp表示几行1就是1行，2就是2行    */
+    -webkit-line-clamp: 2;    
+    overflow: hidden;
+}
+
+
+.goods_price{
+    font-size: 32rpx;
+    color: var(--themColor);
+}

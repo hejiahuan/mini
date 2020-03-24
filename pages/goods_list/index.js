@@ -1,4 +1,5 @@
-// pages/goods_list/index.js
+import {getGoodsList} from "../../network/goods-list"
+
 Page({
 
   /**
@@ -21,7 +22,17 @@ Page({
         value:"价格",
         isActive:false
       }
-    ]
+    ],
+    //定义参数
+    QueryParams:{
+      query:"",
+      cid:"",
+      pageNum:1,
+      pageSize:10
+    },
+
+    goodList:[]
+
 
   },
 
@@ -45,14 +56,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    // // 可以得到上个页面的cid
+    this.data.QueryParams=options.cid;
+    // //获取商品列表数据
+    getGoodsList(this.data.QueryParams).then(res=>{
+      const goodList=res.data.message.goods;
+     this.setData({
+      goodList
+     })
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
