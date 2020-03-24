@@ -33,7 +33,8 @@ Page({
 
     goodList:[],
     //总页数
-    totalPage:1
+    totalPage:1,
+    isHideLoadMore:false
 
 
   },
@@ -58,6 +59,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
     // // 可以得到上个页面的cid
     this.data.QueryParams.cid=options.cid;
     // //获取商品列表数据
@@ -103,8 +107,8 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
+  onPullDownRefresh: function (item) {
+    wx.startPullDownRefresh()
   },
 
   /**
@@ -124,11 +128,13 @@ Page({
         const resgoodList=res.data.message.goods;
        
        this.setData({
-        goodList:[...this.data.goodList,...resgoodList]
-        
+        goodList:[...this.data.goodList,...resgoodList],
+        isHideLoadMore:true
        })
       })
     }
+
+    
   },
 
   /**

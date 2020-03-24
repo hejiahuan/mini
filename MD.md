@@ -134,3 +134,10 @@ totalNums.push(...nums1)
 Arrays.push(...items: T[])可变参数
 所以他可以放多个参数进去！！！！，然后,分隔！
 totalName.push(1,2,3,4)
+
+###做了向上加载过渡动画
+1自己封装组件（底部加载动画）wx-loading
+2用
+wx.showLoading({
+      title: '加载中',
+    })
