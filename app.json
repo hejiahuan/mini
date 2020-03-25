@@ -11,7 +11,8 @@
     "pages/feedback/index",
     "pages/login/index",
     "pages/auth/index",
-    "pages/pay/index"
+    "pages/pay/index",
+    "pages/goods_detail/index"
   ],
   "tabBar": {
     "color": "#000",

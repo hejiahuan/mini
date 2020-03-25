@@ -1,4 +1,4 @@
-import {getGoodsList} from "../../network/goods-list"
+import { getGoodsList } from "../../network/goods-list"
 
 Page({
 
@@ -6,53 +6,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabControl:[
+    tabControl: [
       {
-        id:0,
-        value:"综合",
-        isActive:true
+        id: 0,
+        value: "综合",
+        isActive: true
       },
       {
-        id:1,
-        value:"销量",
-        isActive:false
+        id: 1,
+        value: "销量",
+        isActive: false
       },
       {
-        id:2,
-        value:"价格",
-        isActive:false
+        id: 2,
+        value: "价格",
+        isActive: false
       }
     ],
     //定义参数
-    QueryParams:{
-      query:"",
-      cid:"",
-      pagenum:1,
-      pagesize:20,
+    QueryParams: {
+      query: "",
+      cid: "",
+      pagenum: 1,
+      pagesize: 20,
     },
 
-    goodList:[],
+    goodList: [],
     //总页数
-    totalPage:1,
-    isHideLoadMore:false
+    totalPage: 1,
+    isHideLoadMore: false,
+    offSetTop: "",
+    scrollTop:0
 
 
   },
 
   // tab切换点击
-  tabItemChange(e){
+  tabItemChange(e) {
     // 1获取被点击的标题索引
-    const {index}=e.detail;
+    const { index } = e.detail;
     // //2修改数据源组
-    const tabs=this.data.tabControl;
-    tabs.forEach((v,i)=>i===index?v.isActive=true:v.isActive=false);
-      // tabs.forEach((i,v)=>{
-      //   console.log(v)
-      // })
-   
+    const tabs = this.data.tabControl;
+    tabs.forEach((v, i) => i === index ? v.isActive = true : v.isActive = false);
+    // tabs.forEach((i,v)=>{
+    //   console.log(v)
+    // })
+
     // //3
     this.setData({
-      tabControl:tabs
+      tabControl: tabs
     })
   },
   /**
@@ -63,24 +65,41 @@ Page({
     //   title: '加载中',
     // })
     // // 可以得到上个页面的cid
-    this.data.QueryParams.cid=options.cid;
+    this.data.QueryParams.cid = options.cid;
     // //获取商品列表数据
-    getGoodsList(this.data.QueryParams).then(res=>{
-      const total=res.data.message.total;
-      this.data.totalPage=Math.ceil(total/this.data.QueryParams.pagesize);
-      const goodList=res.data.message.goods;
-     this.setData({
-       //这么写是为了做数组拼接，上拉加载！！！
-      goodList
-     })
+    getGoodsList(this.data.QueryParams).then(res => {
+      const total = res.data.message.total;
+      this.data.totalPage = Math.ceil(total / this.data.QueryParams.pagesize);
+      const goodList = res.data.message.goods;
+      this.setData({
+        //这么写是为了做数组拼接，上拉加载！！！
+        goodList
+      })
     })
-  },
 
+    //得到TabControll对应顶部的距离
+    const query = wx.createSelectorQuery()
+    query.select('.tabControl').boundingClientRect()
+    let self = this;
+    query.exec(function (res) {
+      self.setData({
+        offSetTop: res[0].top
+      })
+    })
+
+  },
+  //这里是page的一个实时监听得到滚动距离ScrollTop
+  onPageScroll: function(e){
+      this.setData({
+        scrollTop:e.scrollTop
+      })
+        
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
@@ -115,26 +134,26 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function (item) {
-    const pageNum=this.data.QueryParams.pagenum;
-    const totalPage=this.data.QueryParams.totalPage;
-  //  1判断有没有下一页
-    if(pageNum>=totalPage){
-        console.log("没有下一页数据");
-    }else{
+    const pageNum = this.data.QueryParams.pagenum;
+    const totalPage = this.data.QueryParams.totalPage;
+    //  1判断有没有下一页
+    if (pageNum >= totalPage) {
+      console.log("没有下一页数据");
+    } else {
       this.data.QueryParams.pagenum++;
-      getGoodsList(this.data.QueryParams).then(res=>{
-        const total=res.data.message.total;
-        this.data.totalPage=Math.ceil(total/this.data.QueryParams.pagesize);
-        const resgoodList=res.data.message.goods;
-       
-       this.setData({
-        goodList:[...this.data.goodList,...resgoodList],
-        isHideLoadMore:true
-       })
+      getGoodsList(this.data.QueryParams).then(res => {
+        const total = res.data.message.total;
+        this.data.totalPage = Math.ceil(total / this.data.QueryParams.pagesize);
+        const resgoodList = res.data.message.goods;
+
+        this.setData({
+          goodList: [...this.data.goodList, ...resgoodList],
+          isHideLoadMore: true
+        })
       })
     }
 
-    
+
   },
 
   /**

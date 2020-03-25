@@ -1,5 +1,7 @@
 // components/wx-tabcontrol/wx-tabcontrol.js
 Component({
+  //外部组件给内部传样式，这里不支持驼峰写法
+  externalClasses: ['isfixedtopclass'],
   /**
    * 组件的属性列表
    */
@@ -9,7 +11,6 @@ Component({
         value:[]
       }
   },
-
   /**
    * 组件的初始数据
    */

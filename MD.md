@@ -141,3 +141,14 @@ totalName.push(1,2,3,4)
 wx.showLoading({
       title: '加载中',
     })
+
+
+####当goods_list向上移的时候我们给tabControl吸顶
+1得到要吸顶的导航区域到的顶部的距离offsetTop(但是微信小程序已经给你吧offsetTop算出来了，他们这里命名为top)
+2得到页面滚动的距离scrollTop
+3当页面滚动的距离scrollTop大于offsetTop的距离，那么就应该吸顶
+4吸顶就是给样式，绑定样式就可以了
+(这里我们还用到了父组件给子组件传样式)
+ externalClasses: ['isfixedtopclass']
+
+ 主要代码在goods_detail和wx-tabcontroll中

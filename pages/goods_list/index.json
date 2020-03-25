@@ -4,5 +4,6 @@
     "my-tabcontrol":"/components/wx-tabcontrol/wx-tabcontrol",
     "my-loading":"/components/wx-loading/wx-loading"
   },
+  "enablePullDownRefresh":true,
   "navigationBarTitleText": "商品列表"
 }

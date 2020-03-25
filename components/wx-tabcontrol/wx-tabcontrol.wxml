@@ -1,5 +1,5 @@
 <view class="tabs">
-    <view class="tab_title">
+    <view class="tab_title isfixedtopclass">
         <view 
             wx:for="{{tabcontrol}}"
             wx:key="id"
