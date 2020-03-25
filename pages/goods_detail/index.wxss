@@ -1,0 +1,50 @@
+.detail_swiper swiper{
+    text-align: center;
+    height: 400rpx;
+}
+
+.detail_swiper swiper image{
+    width: 60%;
+}
+
+.goods_price{
+    font-weight: 600;
+    font-size: 32rpx;
+    padding: 15rpx;
+    color: var(--themColor);
+}
+
+.goods_row{
+    display: flex;
+    border-top: 5rpx solid #dedede;
+    border-bottom: 5rpx solid #dedede;
+    padding: 10rpx 0;
+}
+
+.goods_name{
+    font-size: 30rpx;
+    padding: 0 10rpx;
+    flex: 7;
+    display: -webkit-box;    
+    -webkit-box-orient: vertical; 
+    /* -webkit-line-clamp表示几行1就是1行，2就是2行    */
+    -webkit-line-clamp: 2;    
+    overflow: hidden;
+}
+
+.goods_collect{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 1rpx solid #ccc;
+}
+
+
+.goods_info_title{
+    font-weight: 600;
+    font-size: 32rpx;
+    padding: 15rpx;
+    color: var(--themColor);
+}

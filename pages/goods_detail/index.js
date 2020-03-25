@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+      goodsDetailObj:[]
   },
 
   /**
@@ -15,7 +15,9 @@ Page({
    */
   onLoad: function (options) {
     getGoodsDetail(options.goods_id).then(res=>{
-      console.log(res)
+      this.setData({
+        goodsDetailObj:res.data.message
+      })
     })
   },
 
