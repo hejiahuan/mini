@@ -7,7 +7,7 @@
 
         这个class=tabControl,什么也没有是为了做吸顶的
     -->
-    <my-tabcontrol tabcontrol="{{tabControl}}" bind:tabItemChange="tabItemChange" class="tabControl" isfixedtopclass="{{scrollTop>offSetTop ? 'isfixedtopclass':''}}">
+    <my-tabcontrol tabcontrol="{{tabControl}}" bind:tabItemChange="tabItemChange" class="tabControl" isfixedtopclass="{{isFixed ? 'isfixedtopclass':''}}">
         <block wx:if="{{tabControl[0].isActive}}">
             <view class="first_tab">
                 <navigator class="goods_item" wx:for="{{goodList}}" wx:for-index="goods_id"

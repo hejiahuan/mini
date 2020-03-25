@@ -152,3 +152,20 @@ wx.showLoading({
  externalClasses: ['isfixedtopclass']
 
  主要代码在goods_detail和wx-tabcontroll中
+ ####吸顶效果的优化（防止setDatas大量频繁的赋值）
+ 我们不频繁的给scrollTop赋值，设置一个isFixed的属性默认是false,
+ 然后做判断如果滚动距离大于offsetTop那么就为true,否则为false
+
+  onPageScroll: function(e){
+     if(e.scrollTop>this.data.offSetTop){
+        this.setData({
+          isFixed:true
+        })
+     }else{
+      this.setData({
+        isFixed:false
+      })
+     }
+
+isFixed做三目运算符 
+<my-tabcontrol tabcontrol="{{tabControl}}" bind:tabItemChange="tabItemChange" class="tabControl" isfixedtopclass="{{isFixed ? 'isfixedtopclass':''}}">

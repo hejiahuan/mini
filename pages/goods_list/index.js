@@ -36,8 +36,8 @@ Page({
     totalPage: 1,
     isHideLoadMore: false,
     offSetTop: "",
-    scrollTop:0
-
+    scrollTop:0,
+    isFixed:false
 
   },
 
@@ -90,9 +90,16 @@ Page({
   },
   //这里是page的一个实时监听得到滚动距离ScrollTop
   onPageScroll: function(e){
+     if(e.scrollTop>this.data.offSetTop){
+        this.setData({
+          isFixed:true
+        })
+     }else{
       this.setData({
-        scrollTop:e.scrollTop
+        isFixed:false
       })
+     }
+      
         
   },
   /**
