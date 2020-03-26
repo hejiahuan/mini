@@ -5,6 +5,7 @@
 
 .detail_swiper swiper image{
     width: 60%;
+   
 }
 
 .goods_price{
@@ -39,12 +40,49 @@
     justify-content: center;
     align-items: center;
     border-left: 1rpx solid #ccc;
+    background-color: #fff;
 }
 
 
 .goods_info_title{
-    font-weight: 600;
+    font-weight: 700;
     font-size: 32rpx;
     padding: 15rpx;
     color: var(--themColor);
+}
+
+
+.goodsFixed{
+    display: flex;
+    justify-content: space-around;
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #333;
+    padding: 15rpx;
+    
+}
+
+.isFixed{
+    background-color: #fff;
+    z-index: 999;
+    width: 100%;
+    position: fixed;
+    top:-1rpx;
+}
+.active{
+    color: var(--themColor);
+}
+
+/* //用结构伪类可以做样式 */
+.active::after{
+        content: '';
+        width:80rpx;
+        height: 0.14rem;
+        background: var(--themColor);
+        bottom: -0.1rem;
+        position: absolute;
+        margin-left: 30rpx;
+        transform: translateX(-50%);
+    
+    
 }

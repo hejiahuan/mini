@@ -1,13 +1,12 @@
+
+<!-- 吸顶的商品规格 -->
 <view class="detail_swiper">
     <swiper indicator-dots indicator-color="rgba(0,0,0,.3)" autoplay circular>
-        <swiper-item 
-             wx:for="{{goodsDetailObj.pics}}"
-             wx::key="pics_id">
-                <image mode="widthFix" src="{{item.pics_mid}}" />
-             </swiper-item>
+        <swiper-item wx:for="{{goodsDetailObj.pics}}" wx::key="pics_id">
+            <image mode="widthFix" src="{{item.pics_mid}}" />
+        </swiper-item>
     </swiper>
 </view>
-
 <view class="goods_price">￥{{goodsDetailObj.goods_price}}</view>
 <view class="goods_row">
     <view class="goods_name">{{goodsDetailObj.goods_name}}</view>
@@ -18,9 +17,15 @@
 </view>
 <view class="goods_info">
     <view class="goods_info_title">图文详情</view>
-     <view class="goods_info_content">
-         <!-- 因为图文详情传入的是div我们必须用富文本来渲染div -->
+    <view class="goods_info_content">
+        <!-- 因为图文详情传入的是div我们必须用富文本来渲染div -->
         <rich-text nodes="{{goodsDetailObj.goods_introduce}}" bindtap="tap"></rich-text>
-     </view>
+    </view>
 </view>
 
+<!-- <view class="goodsFixed isFixed" hidden="{{isHidden}}"> -->
+<view class="goodsFixed {{isFixed ?'isFixed':''}}">
+    <view class="goods_item {{currentIndex===index ? 'active':''}}" wx:for="{{goods}}" wx:for-index="index" bind:tap="goodFixedClick" data-index="{{index}}">
+        {{item}}
+    </view>
+</view>
