@@ -9,13 +9,14 @@ Page({
   data: {
     goodsDetailObj: [],
     offsetTop: 0,
-    isFixed:false,
+    isFixed: false,
     goods: ["商品", "价格", "详情"],
     currentIndex: 0,
     // 存储各个联动效果的Y值
-    themeY: [0],
+    themeY: [],
     //这里要得到吸顶的高度，然后评价和价格的offsettop-height才是实际要滚动的高度，我们这个高度在onPageScroll中获取
-    FixedHeight:"0"
+    FixedHeight: "0",
+    FixedcurrentIndex: 0
 
 
   },
@@ -24,9 +25,11 @@ Page({
     this.setData({
       currentIndex: e.currentTarget.dataset.index
     })
-    // https://developers.weixin.qq.com/miniprogram/dev/api/ui/scroll/wx.pageScrollTo.html
+
+    const index = this.data.currentIndex
+    // // https://developers.weixin.qq.com/miniprogram/dev/api/ui/scroll/wx.pageScrollTo.html
     wx.pageScrollTo({
-      scrollTop: this.data.themeY[this.data.currentIndex],
+      scrollTop: this.data.themeY[index],
       duration: 300
     })
 
@@ -47,18 +50,20 @@ Page({
     //得到要Fixed的offsetTop
     const query = wx.createSelectorQuery()
     query.select('.goodsFixed').boundingClientRect()
-     //以下得到商品，评价，和价钱的offsetTop
+    //以下得到商品，评价，和价钱的offsetTop
     //这里我们拿到价格和详情的offsetTop
     query.select('.goods_price').boundingClientRect()
     query.select('.goods_info').boundingClientRect()
     query.exec(res => {
-      console.log(res)
       this.setData({
-        FixedHeight:res[0].height
+        FixedHeight: res[0].height
       })
-      this.data.themeY.push(res[1].top-this.data.FixedHeight)
-      this.data.themeY.push(res[2].top-this.data.FixedHeight)
-      
+      this.data.themeY.push(0)
+      this.data.themeY.push(res[1].top - this.data.FixedHeight)
+      this.data.themeY.push(res[2].top - this.data.FixedHeight)
+      //这里再push一个Number.Max_Value,为了做滚动显示对应标题
+      this.data.themeY.push(Number.MAX_VALUE)
+
     })
 
 
@@ -66,17 +71,30 @@ Page({
   onPageScroll: function (res) {
     if (res.scrollTop > this.data.offsetTop) {
       this.setData({
-        isFixed:true
+        isFixed: true
       })
 
     } else {
       this.setData({
-        isFixed:false
+        isFixed: false
       })
     }
+       // 滚动内容显示对应标题
+    for (let index = 0; index < this.data.themeY.length - 1; index++) {
+      if (this.data.FixedcurrentIndex !== index && (res.scrollTop >= this.data.themeY[index] && res.scrollTop < this.data.themeY[index + 1])) {
+        this.data.FixedcurrentIndex=index;
+        this.setData({
+          currentIndex:this.data.FixedcurrentIndex
+        })
+      }
 
-    
+    }
+   
   },
+
+
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

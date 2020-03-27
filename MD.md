@@ -181,3 +181,8 @@ https://developers.weixin.qq.com/miniprogram/dev/component/rich-text.html
 得到每个栏目的Y值，然后存储起来，然后当点击的时候，跳到Y值就可以了
 https://developers.weixin.qq.com/miniprogram/dev/api/ui/scroll/wx.pageScrollTo.html
 //这里我们拿到价格和详情的offsetTop
+2滚动内容显示对应标题
+思路！
+我们在1中采集了他们的Y轴 themeY并且存入
+[0,xx,xxx]
+我们做判断，如果y轴到0-xxx我们给那个设置active
