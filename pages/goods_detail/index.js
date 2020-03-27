@@ -16,11 +16,13 @@ Page({
     themeY: [],
     //这里要得到吸顶的高度，然后评价和价格的offsettop-height才是实际要滚动的高度，我们这个高度在onPageScroll中获取
     FixedHeight: "0",
-    FixedcurrentIndex: 0
+    FixedcurrentIndex: 0,
 
 
   },
-
+  bindscroll(){
+    console.log("我是你大爷")
+  },
   goodFixedClick(e) {
     this.setData({
       currentIndex: e.currentTarget.dataset.index
@@ -37,6 +39,15 @@ Page({
 
   },
 
+  //点击轮播图放大预览
+  handelPrevewImage(e){
+   const goodsPics= this.data.goodsDetailObj.pics.map(v=>v.pics_mid)
+   const current=e.currentTarget.dataset.url;
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接
+      urls: goodsPics // 需要预览的图片http链接列表
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

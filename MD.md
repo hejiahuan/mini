@@ -176,13 +176,35 @@ isFixed做三目运算符
 https://developers.weixin.qq.com/miniprogram/dev/component/rich-text.html
 <div class=\"lazyimg\"><div moduleid=\"R0503002_2\" modulename=\"关联推荐\"><p><a href=\"https://shop.suning.com/30000011/index.html\" target=\"_blank\"><img data-src=\"https://image.suning.cn/uimg/sop/commodity/152418403963754690151350_x.jpg?from=mobile&amp;format=80q.webp\" alt=\"\" src=\"https://image.suning.cn/uimg/sop/commodity/152418403963754690151350_x.jpg?from=mobile&format=80q.webp\" width=\"100%\" height=\"auto\"></a></p>\n<table style=\"width: 100%; height: auto;\">\n<tbody>\n<tr>\n<td><a href=\"https://product.suning.com/0000000000/721034170.html\" target=\"_blank\"><img data-src=\"https://image.suning.cn/uimg/sop/commodity/674265889569958711135500_x.jpg?from=mobile&amp;format=80q.webp\" alt=\"\" src=\"https://image.suning.cn/uimg/sop/commodity/674265889569958711135500_x.jpg?from=mobile&format=80q.webp\" width=\"100%\" height=\"auto\"></a></td>\n<td><a href=\"https://product.suning.com/0030000011/659973806.html\" target=\"_blank\"><img data-src=\"https://image.suning.cn/uimg/sop/commodity/580804888269630832171600_x.jpg?from=mobile&amp;format=80q.webp\" alt=\"\" src=\"https://image.suning.cn/uimg/sop/commodity/580804888269630832171600_x.jpg?from=mobile&format=80q.webp\" width=\"100%\" height=\"auto\"></a></td>\n<td><a href=\"https://product.suning.com/0000000000/646332415.html\" target=\"_blank\"><img data-src=\"https://image.suning.cn/uimg/sop/commodity/164947314370596747459900_x.jpg?from=mobile&amp;format=80q.webp\" alt=\"\" src=\"https://image.suning.cn/uimg/sop/commodity/164947314370596747459900_x.jpg?from=mobile&format=80q.webp\" width=\"100%\" height=\"auto\"></a></td>\n</tr>\n<tr>\n<td><a href=\"https://product.suning.com/0030000011/719579209.html\" target=\"_blank\"><img data-src=\"https://image.suning.cn/uimg/sop/commodity/109859084335308009815860_x.jpg?from=mobile&amp;format=80q.webp\" alt=\"\" src=\"https://image.suning.cn/uimg/sop/commodity/109859084335308009815860_x.jpg?from=mobile&format=80q.webp\" width=\"100%\" height=\"auto\"></a></td>\n<td><a href=\"https://product.suning.com/0000000000/154158097.html\" target=\"_blank\"><img data-src=\"https://image.suning.cn/uimg/sop/commodity/139086270826280834777770_x.jpg?from=mobile&amp;format=80q.webp\" alt=\"\" src=\"https://image.suning.cn/uimg/sop/commodity/139086270826280834777770_x.jpg?from=mobile&format=80q.webp\" width=\"100%\" height=\"auto\"></a></td>\n<td><a href=\"https://product.suning.com/0000000000/683246685.html\" target=\"_blank\"><img data-src=\"https://image.suning.cn/uimg/sop/commodity/212695348731710262086520_x.jpg?from=mobile&amp;format=80q.webp\" alt=\"\" src=\"https://image.suning.cn/uimg/sop/commodity/212695348731710262086520_x.jpg?from=mobile&format=80q.webp\" width=\"100%\" height=\"auto\"></a></td>\n</tr>\n</tbody>\n</table></div><div moduleid=\"R0503002_3\" modulename=\"商品详情\"><p><img data-src=\"//image.suning.cn/uimg/sop/commodity/323128866134590684049660_x.jpg?from=mobile&amp;format=80q.webp\" alt=\"\" src=\"//image.suning.cn/uimg/sop/commodity/323128866134590684049660_x.jpg?from=mobile&format=80q.webp\" width=\"100%\" height=\"auto\"></p></div><div moduleid=\"R0503002_6\" modulename=\"安装说明\"><table style=\"width: 100%; height: auto;\">\n<tbody>\n<tr>\n<td><a href=\"https://sale.suning.com/shfw/cdaz/index.html#suning\" target=\"_blank\"><img data-src=\"https://sale.suning.com/shfw/cdazpic/images/all.jpg?from=mobile&amp;format=80q.webp\" alt=\"\" src=\"https://sale.suning.com/shfw/cdazpic/images/all.jpg?from=mobile&format=80q.webp\" width=\"100%\" height=\"auto\"></a></td>\n</tr>\n</tbody>\n</table></div></div>
 
-####在商品详情页对应效果联动
+####在商品详情页对应效果联动（这个没有用框架写，原生的）
 1点击标题滚动到指定位置(关键是得到offsetTop 在图片加载完后得到)
 得到每个栏目的Y值，然后存储起来，然后当点击的时候，跳到Y值就可以了
 https://developers.weixin.qq.com/miniprogram/dev/api/ui/scroll/wx.pageScrollTo.html
 //这里我们拿到价格和详情的offsetTop
-2滚动内容显示对应标题
+2滚动内容显示对应标题（问题，再点击标题的时候，滚动到其他位置，但是有个问题就是CurrentIndex-1这个是不对的）
 思路！
 我们在1中采集了他们的Y轴 themeY并且存入
 [0,xx,xxx]
 我们做判断，如果y轴到0-xxx我们给那个设置active
+
+我建议用Scroll-view来做！！！！！（上面的是有问题的）当时用vue 这种方法是没有问题的
+https://developers.weixin.qq.com/miniprogram/dev/component/scroll-view.html
+
+
+####点击图片全屏预览
+https://developers.weixin.qq.com/miniprogram/dev/api/media/image/wx.previewImage.html
+goodFixedClick(e) {
+    this.setData({
+      currentIndex: e.currentTarget.dataset.index
+    })
+
+    const index = this.data.currentIndex
+    // // https://developers.weixin.qq.com/miniprogram/dev/api/ui/scroll/wx.pageScrollTo.html
+    wx.pageScrollTo({
+      scrollTop: this.data.themeY[index],
+      duration: 300
+    })
+
+
+
+  },
