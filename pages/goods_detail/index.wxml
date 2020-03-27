@@ -32,3 +32,28 @@
         </view>
     </view>
    
+   <view class="goods_cars">
+        <view class="car_item" hover-class="none" hover-stop-propagation="false">
+            <view class="iconfont icon-kefu" ></view>
+            <view class="goods_kefu">客服</view>
+            <button open-type="contact"></button>
+        </view>
+         <view class="car_item" hover-class="none" hover-stop-propagation="false">
+            <view class="iconfont icon-yixianshi-" ></view>
+            <view class="goods_fenxiang">分享</view>
+            <button open-type="share"></button>
+        </view>
+         <navigator url="/pages/cart/index" open-type="switchTab" class="car_item" hover-class="none" hover-stop-propagation="false">
+            <view class="iconfont icon-gouwuche" ></view>
+            <view class="goods_car">购物车</view>
+            
+        </navigator>
+         <view class="car_item car" hover-class="none" hover-stop-propagation="false">
+            <view class="goods_add">加入购物车</view>
+            
+        </view>
+         <view class="car_item buy" hover-class="none" hover-stop-propagation="false">
+            <view class="goods_buy">立即购买</view>
+            
+        </view>
+   </view>

@@ -208,3 +208,23 @@ goodFixedClick(e) {
 
 
   },
+
+
+  ###底部做完分享，客服，加入购物车，购物车
+  1navigator 默认不能跳到tabBar中的页面。如果想跳到tabBar页面，必须加open-type="switchTab" 表明这个url是tabbar
+  https://developers.weixin.qq.com/miniprogram/dev/component/navigator.html
+  2分享和客服都是button 中不同的opentype
+  https://developers.weixin.qq.com/miniprogram/dev/component/button.html
+  这里有个小技巧当我们用的布局是View但是我们在客服和分享中都加了button一旦加了button那么他的布局
+  又会打乱，如和不打乱再完成任务呢
+  1button透明值为0，而且width:100%,height:100%, 
+  .car_item button,.share{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0
+
+ }
+

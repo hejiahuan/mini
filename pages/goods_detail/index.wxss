@@ -1,3 +1,6 @@
+page{
+    padding-bottom: 90rpx;
+}
 .detail_swiper swiper{
     text-align: center;
     height: 400rpx;
@@ -57,7 +60,7 @@
     justify-content: space-around;
     font-size: 32rpx;
     font-weight: 500;
-    color: #333;
+        color: #333;
     padding: 15rpx;
     
 }
@@ -86,3 +89,45 @@
     
     
 }
+.goods_cars{
+    position: fixed;
+    height: 90rpx;
+    width: 100%;
+    left:0;
+    bottom: 0;
+    background-color: #fff;
+    display: flex;
+}
+
+.car_item{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24rpx;
+    position: relative;
+    border-top: 1rpx solid #Ccc;
+}   
+
+.car{
+    background-color: #ffa500;
+    color: #fff;
+    font-size: 30rpx;
+}
+
+.buy{
+    background-color: #eb4450;
+    color: #fff;
+    font-size: 30rpx;
+}
+
+.car_item button,.share{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0
+
+ }
