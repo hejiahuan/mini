@@ -20,7 +20,7 @@ Page({
 
 
   },
-  bindscroll(){
+  bindscroll() {
     console.log("我是你大爷")
   },
   goodFixedClick(e) {
@@ -40,13 +40,42 @@ Page({
   },
 
   //点击轮播图放大预览
-  handelPrevewImage(e){
-   const goodsPics= this.data.goodsDetailObj.pics.map(v=>v.pics_mid)
-   const current=e.currentTarget.dataset.url;
+  handelPrevewImage(e) {
+    const goodsPics = this.data.goodsDetailObj.pics.map(v => v.pics_mid)
+    const current = e.currentTarget.dataset.url;
     wx.previewImage({
       current: current, // 当前显示图片的http链接
       urls: goodsPics // 需要预览的图片http链接列表
     })
+  },
+
+  // 点击加入购物车
+  bindCarAdd() {
+    //||[]把字符串变成数组
+    let cars = wx.getStorageSync("cars") || [];
+    //这个用到了es6 array.findIndex
+    // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
+    let index = cars.findIndex(v => v.goods_id === this.data.goodsDetailObj.goods_id);
+    console.log(index)
+    if(index===-1){
+      // 不存在,第一次添加
+      this.data.goodsDetailObj.num=1;
+      cars.push(this.data.goodsDetailObj);
+
+    }else{
+      // 存在
+      cars[index].num++;
+    }
+    // //5把购物车重新添加到缓存中
+    wx.setStorageSync("cars", cars);
+
+    //6弹出提示
+    wx.showToast({
+      title: '加入成功',
+      icon: 'success',
+      //mask是防止用户疯狂点击
+      mask: true
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -90,17 +119,17 @@ Page({
         isFixed: false
       })
     }
-       // 滚动内容显示对应标题
+    // 滚动内容显示对应标题
     for (let index = 0; index < this.data.themeY.length - 1; index++) {
       if (this.data.FixedcurrentIndex !== index && (res.scrollTop >= this.data.themeY[index] && res.scrollTop < this.data.themeY[index + 1])) {
-        this.data.FixedcurrentIndex=index;
+        this.data.FixedcurrentIndex = index;
         this.setData({
-          currentIndex:this.data.FixedcurrentIndex
+          currentIndex: this.data.FixedcurrentIndex
         })
       }
 
     }
-   
+
   },
 
 

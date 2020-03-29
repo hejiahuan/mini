@@ -48,7 +48,7 @@
             <view class="goods_car">购物车</view>
             
         </navigator>
-         <view class="car_item car" hover-class="none" hover-stop-propagation="false">
+         <view class="car_item car" bind:tap="bindCarAdd">
             <view class="goods_add">加入购物车</view>
             
         </view>
