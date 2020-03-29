@@ -1,2 +1,62 @@
-<!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+<view class="cars">
+	<!-- 添加收获地址 -->
+	<view class="addres_btn" wx:if="{{!address.userName}}">
+		<button type="primary" plain bind:tap="handleChoseAddress">获取收获地址</button>
+	</view>
+	<view wx:else class="userinfo_row">
+		<view class="user_info">
+			<view>{{address.userName}}</view>
+			<view>
+				{{address.provinceName+address.cityName+address.countyName+address.detailInfo}}
+			</view>
+		</view>
+		<view class="user_phone">{{address.telNumber}}</view>
+	</view>
+	<!-- 购物车 -->
+	<view class="car_list">
+		<view class="car_title">购物车</view>
+		<view class="car_main">
+			<view class="car_check">
+				<checkbox-group bindchange="">
+					<checkbox/>
+				</checkbox-group>
+			</view>
+				<navigator class="car_image">
+					<image mode="widthFix" src="http://image5.suning.cn/uimg/b2c/newcatentries/0000000000-000000000193373779_1_400x400.jpg" />
+				</navigator>
+			<view class="car_item">
+				<view class="car_name">海信(Hisense)LED50MU8600UC 50英寸 4K超高清智能电视 HDR超薄曲面</view>
+				<view class="car_item_info">
+					<view class="car_price">￥9999</view>
+					<view class="car_tool">
+						<view class="car_edit">+</view>
+						<view class="car_num">10</view>
+						<view class="car_edit">+</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+	</view>
+
+
+	<!--底部工具栏-->
+	<view class="car_foor">
+		<checkbox-group bindchange="" class="car_foor_check">
+			<checkbox>全选</checkbox>
+		</checkbox-group>
+		<view class="car_all">
+			<view class="car_all_all">
+				合计:<text class="total_price">￥9999</text>
+			</view>
+			<view class="car_all_yun">
+				包含运费
+			</view>
+
+		</view>
+		<view class="car_jiesuan">
+			结算	
+		</view>
+	</view>
+</view>
+

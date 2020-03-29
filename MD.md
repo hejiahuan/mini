@@ -235,6 +235,31 @@ goodFixedClick(e) {
 5如果不存在，添加新元素，带上购买数量属性，重新填充购物车
 6弹出提示
 
+####加入购物车后，点击购物车
+1调用小程序内置的api,获取用户的收获地址wx.choseAddress
+  1假设用户点击获取收获地址的提框。wx.getSetting确定scope权限值为true
+  2如果没有点击确定点击的取消，scope权限值为false
+  3假设用户从来没有调用过 收获地址的api,scope 为undefined
+
+  // wx.chooseAddress({
+    //   success: (result)=>{
+    //     console.log(result);    
+    //   },
+    //   fail: ()=>{},
+    //   complete: ()=>{}
+    // });
+
+    wx.getSetting({
+      success: (result)=>{
+        console.log(result);    
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
+    
+####点击button 立即购买
+
+####css tree 生成css 树 ctrl+shift+p 仍然选择
 
 
 
