@@ -1,13 +1,17 @@
-// pages/pay/index.js
+// pages/cart/index.js
+import {showToast} from "../../network/showmodelfixe"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    address: {},
+    cars: [],
+    totalNum: 0,
+    totalPrice: 0
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,7 +30,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    //1获取缓存中的收获地址
+    const address = wx.getStorageSync("address");
+    // 2获取缓存中的购物车数据
+    const cars = wx.getStorageSync("cars") || [];
+    //过滤后的数组
+    const checkedCart=cars.filter(v=>v.checked);
 
+    //总价格和总数量
+    let totalPrice = 0;
+    let totalNum = 0;
+    checkedCart.forEach(v => {
+        totalPrice += v.num * v.goods_price
+        totalNum += v.num;
+
+
+    });
+
+    this.setData({
+      address, totalPrice, totalNum,
+      cars:checkedCart
+    })
   },
 
   /**
@@ -62,5 +86,18 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+ 
+
+
+
+
+
+  //点击按钮结算
+  handelPay() {
+   
   }
+
+
+
 })

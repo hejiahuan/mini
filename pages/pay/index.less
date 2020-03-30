@@ -1,0 +1,119 @@
+page{
+  padding-bottom: 90rpx;
+}
+.cars{
+ 
+   
+    .userinfo_row{
+        display: flex;
+        padding: 20rpx;
+        .user_info{
+            
+            flex: 5;
+        }
+        .user_phone{
+            flex: 3;
+            text-align: right;
+        }
+    }
+
+
+
+     .car_list {
+       .car_title {
+         font-size: 40rpx;
+         padding: 20rpx;
+         font-weight: 700;
+         color: var(--themColor);
+         border-bottom: 2rpx solid  currentColor;
+         border-top: 2rpx solid  currentColor;
+      }
+    
+       .car_main {
+         display: flex;
+         padding: 22rpx;
+         border-bottom: 1px solid #ccc;
+         
+    
+        navigator.car_image {
+          flex: 2;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          image {
+            width: 90%;
+          }
+        }
+    
+         .car_item {
+           flex: 4;
+           display: flex;
+           flex-direction: column;
+           justify-content: space-around; 
+           .car_name {
+             color: #123;
+            display: -webkit-box;    
+            -webkit-box-orient: vertical; 
+            /* -webkit-line-clamp表示几行1就是1行，2就是2行    */
+            -webkit-line-clamp: 2;    
+            overflow: hidden;
+          }
+    
+           .car_item_info {
+             display: flex;
+             justify-content: space-between;
+             .car_price {
+               font-weight: 700;
+              color: var(--themColor);
+            }
+    
+             
+          }
+        }
+      }
+
+      
+    }
+
+     .car_foor {
+       display: flex;
+       position: fixed;
+       left: 0;
+       bottom: 0;
+       width: 100%;
+       height: 90rpx;
+       border-top: 1rpx solid #ccc;
+    
+       .car_all {
+         flex: 5;
+         text-align: right;
+         padding-right: 15rpx;
+         font-size: 32rpx;
+         .car_all_all {
+          text.total_price {
+            padding-left: 12rpx;
+             color: var(--themColor);
+             font-size: 32rpx;
+          }
+        }
+    
+         .car_all_yun {
+    
+        }
+      }
+    
+       .car_jiesuan {
+         flex: 3;
+         font-size: 40rpx;
+         font-weight: 700;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+          color: #ffffff;
+          background-color: var(--themColor);
+      }
+    }
+  }    
+      
+    
+    

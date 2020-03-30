@@ -1,4 +1,6 @@
 // pages/cart/index.js
+import {showToast} from "../../network/showmodelfixe"
+
 Page({
 
   /**
@@ -201,7 +203,7 @@ Page({
       wx.showModal({
         title: '提示',
         content: '您是否要删除?',
-        success:res=> {
+        success: res => {
           if (res.confirm) {
             //用array splice来删除
 
@@ -220,7 +222,7 @@ Page({
             });
             const allChecked = cars.length ? cars.every(v => v.checked) : false
             this.setData({
-              cars, totalNum, totalPrice,allChecked
+              cars, totalNum, totalPrice, allChecked
             })
 
             wx.setStorageSync("cars", cars);
@@ -257,6 +259,28 @@ Page({
 
 
 
+  },
+  //点击按钮结算
+  handelPay() {
+    // 1判断收获地址
+    const { address,totalNum} = this.data;
+    if (!address.userName) {
+      showToast({title:"您还没有选择收获地址"})
+      return
+    }
+    //2判断用户有没有选择商品
+    if(totalNum===0){
+      showToast({title:"您还没有选择商品"})
+      return
+    }
+
+    // 3跳转到支付页面
+    wx.navigateTo({
+      url: '/pages/pay/index',
+      success: (result)=>{
+        
+      }
+    });
   }
 
 

@@ -312,6 +312,16 @@ https://developers.weixin.qq.com/miniprogram/dev/api/ui/interaction/wx.showModal
   2取消 什么都不做
 
 ####点击button 立即购买
+1判断一下有没有收获地址信息
+2判断用户有没有选购商品
+3经过以上验证，跳转到支付页面
+
+####跳转到支付页面
+1页面加载的时候
+  1从缓存中获取购物车的数据，渲染到页面
+    这些数据 checked=true
+
+
 
 ####css tree 生成css 树 ctrl+shift+p 仍然选择
 

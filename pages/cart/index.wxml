@@ -66,7 +66,7 @@
 			</view>
 
 		</view>
-		<view class="car_jiesuan">
+		<view class="car_jiesuan" bind:tap="handelPay">
 			结算({{totalNum}})	
 		</view>
 	</view>
