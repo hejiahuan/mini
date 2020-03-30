@@ -15,22 +15,24 @@
 	<!-- 购物车 -->
 	<view class="car_list">
 		<view class="car_title">购物车</view>
-		<view class="car_main">
+		<view class="car_main"
+						wx:for="{{cars}}"
+						wx:key="goods_id">
 			<view class="car_check">
 				<checkbox-group bindchange="">
-					<checkbox/>
+					<checkbox checked="{{item.checked}}"/>
 				</checkbox-group>
 			</view>
 				<navigator class="car_image">
-					<image mode="widthFix" src="http://image5.suning.cn/uimg/b2c/newcatentries/0000000000-000000000193373779_1_400x400.jpg" />
+					<image mode="widthFix" src="{{item.goods_small_logo}}" />
 				</navigator>
 			<view class="car_item">
-				<view class="car_name">海信(Hisense)LED50MU8600UC 50英寸 4K超高清智能电视 HDR超薄曲面</view>
+				<view class="car_name">{{item.goods_name}}</view>
 				<view class="car_item_info">
-					<view class="car_price">￥9999</view>
+					<view class="car_price">￥{{item.goods_price}}</view>
 					<view class="car_tool">
 						<view class="car_edit">+</view>
-						<view class="car_num">10</view>
+						<view class="car_num">{{item.num}}</view>
 						<view class="car_edit">+</view>
 					</view>
 				</view>

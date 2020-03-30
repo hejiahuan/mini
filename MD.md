@@ -257,6 +257,10 @@ goodFixedClick(e) {
       complete: ()=>{}
     });
     
+
+####购物车遍历数据
+1获取缓存中的收获信息
+2获取缓存中的cart数据
 ####点击button 立即购买
 
 ####css tree 生成css 树 ctrl+shift+p 仍然选择

@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address:{}
+    address:{},
+    cars:[]
   },
   /**
    * 生命周期函数--监听页面加载
@@ -27,8 +28,10 @@ Page({
   onShow: function () {
   //1获取缓存中的收获地址
   const address=wx.getStorageSync("address");
+  // 2获取缓存中的购物车数据
+  const cars=wx.getStorageSync("cars")
   this.setData({
-    address
+    address,cars
   })
   },
 

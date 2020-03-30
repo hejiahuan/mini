@@ -60,6 +60,7 @@ Page({
     if(index===-1){
       // 不存在,第一次添加
       this.data.goodsDetailObj.num=1;
+      this.data.goodsDetailObj.checked=true;
       cars.push(this.data.goodsDetailObj);
 
     }else{
