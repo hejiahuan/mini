@@ -15,7 +15,8 @@
 	<!-- 购物车 -->
 	<view class="car_list">
 		<view class="car_title">购物车</view>
-		<view class="car_main"
+		<block wx:if="{{cars.length!==0}}">
+			<view class="car_main"
 						wx:for="{{cars}}"
 						wx:key="goods_id">
 			<view class="car_check">
@@ -31,13 +32,22 @@
 				<view class="car_item_info">
 					<view class="car_price">￥{{item.goods_price}}</view>
 					<view class="car_tool">
-						<view class="car_edit">+</view>
+					<!-- data-operate不是小程序的是我自己写的意识把+1和-1传到后台 -->
+						<view class="car_edit"bind:tap="handelItemNumEdit" data-operate="{{-1}}" data-id="{{item.goods_id}}">-</view>
 						<view class="car_num">{{item.num}}</view>
-						<view class="car_edit">+</view>
+						<view class="car_edit"bind:tap="handelItemNumEdit" data-operate="{{1}}" data-id="{{item.goods_id}}">+</view>
 					</view>
 				</view>
 			</view>
 		</view>
+		</block>
+
+		<block wx:else>
+			<image  src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585560659952&di=56336d4432e5c646d85624bf4ff60ee5&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fe1b1467beea0a9c7d6a56b32bac6d7e5dcd914f7c3e6-YTwUd6_fw658" mode="widthFix">
+				
+			</image>
+		</block>
+		
 		
 	</view>
 

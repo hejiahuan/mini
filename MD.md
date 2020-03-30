@@ -297,6 +297,20 @@ const {cars}=this.data;
 4遍历购物车数组，让里面的商品选中状态跟随allchecke的改变而改变
 5把购物车数组和选中状态重新设置回Data和缓存中
 
+####点击按钮增加数量
+1“+”，“-”按钮 绑定同一个点击事件 区分关键， 自定义属性
+2传递被点击的商品id goods_id
+3获取data中的购物车数组，根据goods_id需要被修改的商品对象
+4直接修改商品的num
+5重新设置回缓存和data中
+
+####商品删除
+1当数量为1，同时用户点击的减号按钮
+2弹出提示(wx.showModel)
+https://developers.weixin.qq.com/miniprogram/dev/api/ui/interaction/wx.showModal.html
+  1确定 删除
+  2取消 什么都不做
+
 ####点击button 立即购买
 
 ####css tree 生成css 树 ctrl+shift+p 仍然选择
