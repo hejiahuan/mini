@@ -44,7 +44,7 @@
 
 	<!--底部工具栏-->
 	<view class="car_foor">
-		<checkbox-group bindchange="" class="car_foor_check">
+		<checkbox-group bindchange="handleItemAllChecked" class="car_foor_check">
 			<checkbox checked="{{allChecked}}">全选</checkbox>
 		</checkbox-group>
 		<view class="car_all">

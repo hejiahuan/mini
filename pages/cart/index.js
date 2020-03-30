@@ -121,7 +121,7 @@ Page({
     });
   },
 
-  //全选和选中
+  //选中
   handleItemcheck(e){
     //1获取被修改的商品id
     const goods_id=e.currentTarget.dataset.id;
@@ -158,6 +158,34 @@ Page({
   this.setData({
     cars,allChecked,totalPrice,totalNum
   })
+  },
+
+  //商品全选和反选
+  handleItemAllChecked(){
+    // 1获取商品中的data中的数据
+   const allChecked=this.data.allChecked;
+   const cars=this.data.cars;
+    // //2修改值
+    this.data.allChecked = !this.data.allChecked;
+    // //3改变数组中的cars和缓存中的cars
+    cars.forEach(v=>v.checked=this.data.allChecked)
+    //总价格和总数量
+  let totalPrice=0;
+  let totalNum=0;
+  cars.forEach(v => {
+    if(v.checked){
+      totalPrice+=v.num*v.goods_price
+      totalNum+=v.num;
+
+    }
+    
+  });
+    this.setData({
+      cars,totalPrice,totalNum
+    })
+
+ 
+    wx.setStorageSync("cars",cars);
   }
  
 })
