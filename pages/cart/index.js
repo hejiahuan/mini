@@ -6,7 +6,10 @@ Page({
    */
   data: {
     address:{},
-    cars:[]
+    cars:[],
+    allChecked:false,
+    totalNum:0,
+    totalPrice:0
   },
   /**
    * 生命周期函数--监听页面加载
@@ -29,9 +32,25 @@ Page({
   //1获取缓存中的收获地址
   const address=wx.getStorageSync("address");
   // 2获取缓存中的购物车数据
-  const cars=wx.getStorageSync("cars")
+  const cars=wx.getStorageSync("cars") || [];
+  //1计算全选 Array.every()表示 必须要确保每个回调函数都返回true
+   //缺点空数组调用every返回也是True
+  const allChecked=cars.length ? cars.every(v=>v.checked):false
+
+  //总价格和总数量
+  let totalPrice=0;
+  let totalNum=0;
+  cars.forEach(v => {
+    if(v.checked){
+      totalPrice+=v.num*v.goods_price
+      totalNum+=v.num;
+
+    }
+    
+  });
+
   this.setData({
-    address,cars
+    address,cars,allChecked,totalPrice,totalNum
   })
   },
 
@@ -100,8 +119,45 @@ Page({
        }
       }
     });
-  }
+  },
 
-  
+  //全选和选中
+  handleItemcheck(e){
+    //1获取被修改的商品id
+    const goods_id=e.currentTarget.dataset.id;
+    //2获取购物车数组
+    const {cars}=this.data;
+    //3findIndex找到要修改的对象
+    let index=cars.findIndex(v=>v.goods_id===goods_id);
+    // 4选中状态取反
+    cars[index].checked=!cars[index].checked;
+    //5,6把购物车数据重新设置回data中和缓存中
+    // this.setData({
+    //   cars
+    // })
+
+    wx.setStorageSync("cars",cars);
+
+    //7重新计算全选总价格和总数量
+     //1计算全选 Array.every()表示 必须要确保每个回调函数都返回true
+   //缺点空数组调用every返回也是True
+  const allChecked=cars.length ? cars.every(v=>v.checked):false
+
+  //总价格和总数量
+  let totalPrice=0;
+  let totalNum=0;
+  cars.forEach(v => {
+    if(v.checked){
+      totalPrice+=v.num*v.goods_price
+      totalNum+=v.num;
+
+    }
+    
+  });
+
+  this.setData({
+    cars,allChecked,totalPrice,totalNum
+  })
+  }
  
 })

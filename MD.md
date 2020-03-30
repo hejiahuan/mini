@@ -261,6 +261,36 @@ goodFixedClick(e) {
 ####购物车遍历数据
 1获取缓存中的收获信息
 2获取缓存中的cart数据
+###点击全选
+1onshow获取到缓存中的购物车数组
+2根据购物车中的商品数据进行计算
+当购物车的所有商品都被选中 checked=true 全选都被选中
+ //1计算全选 Array.every()表示 必须要确保每个回调函数都返回true
+ //缺点空数组调用every返回也是True
+  const allChecked=cars.every(v=>v.checked)
+
+####计算总价格和总重量
+1必须全部选中
+2总价格+=单价*商品数量
+3总数量+=商品数量
+
+###商品选中
+1绑定change事件
+2获取修改的商品对象
+3选中状态取反
+4改变了重新填充回Data和缓存中
+5重新计算数量和价格
+
+得到方法的新写法
+page{
+  data:{
+    cars
+  }
+}
+这样写。直接得到cars对象
+const {cars}=this.data;
+
+
 ####点击button 立即购买
 
 ####css tree 生成css 树 ctrl+shift+p 仍然选择
