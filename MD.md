@@ -395,6 +395,9 @@ order_number	是	string	订单编号
 就是发送请求给diy后台，看真的是否成功
 
 [!getUserInfo登录.PNG]
+#####支付成功后，本地从缓存中删除已经被选中的商品(其实过滤掉选中的就可以了)
+car.filter(v=>!v.checked)
+
 
 订单流程
 [!订单流程.PNG]

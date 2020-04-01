@@ -140,8 +140,14 @@ Page({
       //查询diy后台是否成功支付
       const res = await request({ url: "/orders/chkOrder", data: order_number, header });
       //如果diy后台成功那么成功
-      console.log(res);
       await showToast({ title: "支付成功" })
+      
+      //支付成后，要把缓存中选中的的数据全部删除
+      const car=wx.getStorageSync("cars");
+      //选中的是我们已经付款的，那么我们直接过滤未选中的不就完了
+      car.filter(v=>!v.checked)
+      wx.setStorageSync("cart",car);
+
       //跳转到订单页面
       wx.navigateTo({
         url: '/pages/order/index'
