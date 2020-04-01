@@ -321,10 +321,121 @@ https://developers.weixin.qq.com/miniprogram/dev/api/ui/interaction/wx.showModal
   1从缓存中获取购物车的数据，渲染到页面
     这些数据 checked=true
 
+####微信支付的分析
+1哪些账号可以实现微信支付
+  1企业账号 
+  2企业账号的小程序后台中，必须 给开发者添加上白名单
+    1一个appid 可以同时绑定多个开发者
+    2这些开发者就可以共用这个appid和他的开发权限
+  3支付按钮
+    1先判断缓存中有没有token
+    2没有跳转授权，页面获取token
+    3有token
 
+自己的理解
+1微信小程序要调用前端api wx.login得到code-----coder传给----->后端API(后端需要coder来换取 OpenID 和 会话密钥 session_key。) (后台自己组建token 并且回传给前台)
+2创建订单(必须要有token)
+  1准备请求头参数 
+    Authorization	是	string	用户登录成功获取的token值
+    const header={Authorization:token}
+  2准备请求体参数
+    order_price	是	string	订单总价格
+    consignee_addr	是	string	收货地址
+    goods	是	Array	订单数组
 
+    goods字段说明
+    参数名	必选	类型	说明
+    goods_id	是	number	商品id
+    goods_number	是	number	购买的数量
+    goods_price	是	number	单价
+
+    const order_price=this.data.totalPrice;
+
+  返回示例
+
+  {
+    "error_code": 0,
+    "data": {
+      "uid": "1",
+      "username": "12154545",
+      "name": "吴系挂",
+      "groupid": 2 ,
+      "reg_time": "1436864169",
+      "last_login_time": "0",
+    }
+  }
+
+3发起预支付（预支付参数必须带有token,和第二步的order_number）
+请求头参数：
+
+参数名	必选	类型	说明
+Authorization	是	string	用户登录成功获取的token值
+请求体参数：
+
+参数名	必选	类型	说明
+order_number	是	string	订单编号
+
+返回值是一个pay的对象（这个对象是微信wx-wx.requestPayment(Object object)必须要的）
+{
+  "message": {
+    "pay": {
+      "timeStamp": "1564730510",
+      "nonceStr": "SReWbt3nEmpJo3tr",
+      "package": "prepay_id=wx02152148991420a3b39a90811023326800",
+      "signType": "MD5",
+      "paySign": "3A6943C3B865FA2B2C825CDCB33C5304"
+    },
+    "order_number": "HMDD20190802000000000422"
+  },
+  "meta": {
+    "msg": "预付订单生成成功",
+    "status": 200
+  }
+4查询订单状态是否支付成功
+就是发送请求给diy后台，看真的是否成功
+
+[!getUserInfo登录.PNG]
+
+订单流程
+[!订单流程.PNG]
 ####css tree 生成css 树 ctrl+shift+p 仍然选择
 
+
+####es7  async 语法解决回调的最终方案
+1在小程序的开发工具中，勾选es6转es5语法
+2下载facebook regenerator库中的
+https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime
+3要用的引入(不要全局引入)
+	
+import regeneratorRuntime from "./lib/runtime/runtime.js"
+
+4使用es7 async await 来发送请求
+
+async xxxx(){
+
+
+  await request("xxxxx")
+
+
+}
+
+例子
+
+import regeneratorRuntime from "../../lib/runtime/runtime"
+
+Page({
+  
+ 
+  //获取用户信息
+ async getUserInfo(e){
+     // 1获取用户信息
+     const {encryptedData,errMsg,iv,rawData,signature}=e.detail;
+     //获取小程序登录成功后的值code
+     const {code}=await wxlogin()
+     console.log(code);
+}
+   
+})
 
 
 

@@ -8,6 +8,7 @@ export default function request(options){
       url:_url,
       method:options.method||"get",
       data:options.data||{},
+      header:options.header,
       success:function(res){
         //这个resolve成功的时候把res成功的东西回调给要调用的对象
         resolve(res)
